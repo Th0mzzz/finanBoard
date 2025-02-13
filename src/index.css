@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* Reset CSS */
 * {
@@ -16,17 +16,23 @@ html {
   line-height: 1.5;
   font-weight: 400;
 
-  --background: #FDF7F4;
+  --background: #f7f7f7;
   --background-2: #B9D2D2;
   --container: #fff;
   --primary: #00bf63;
   --primary-hover: #C0EBA6;
   --secondary: #9AA6B2;
-  --text: #000 --ff-title: "Hammersmith One", Arial;
+  --text: #000;
+  --ff-title: "Hammersmith One", Arial;
   --ff-subtitle: "Kanit", Arial;
   --ff-text: "Raleway", Verdana;
-  --ff-link: "Raleway", Verdana;
+  --ff-link: "Poppins", Verdana;
+  --background-lp: linear-gradient(180deg,
+      rgb(247, 247, 247, 0.4) 50%,
+      rgba(0, 191, 99, 0.1) 100%)
 }
+
+
 
 body {
   margin: 0;
@@ -64,12 +70,12 @@ img {
 
 .text {
   font-family: var(--ff-text);
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .link {
   font-family: var(--ff-link);
-  font-size: 18px;
+  font-size: 16px;
   color: var(--primary);
   transition: color .3s;
 

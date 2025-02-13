@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const TitleCSS = styled.div`
     & h1{
-        font-size: clamp(36px, 5vw, 48px);
+        font-size: clamp(32px, 5vw, 36px);
         font-family: var(--ff-title) ;
         line-height: normal;
     }

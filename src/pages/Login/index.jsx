@@ -14,7 +14,11 @@ const Login = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form
+            style={
+                { margin: "auto 0" }
+            }
+            onSubmit={handleSubmit}>
 
             <Input
                 type="email"

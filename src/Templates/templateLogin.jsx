@@ -50,6 +50,13 @@ const AppTemplate = styled.section`
             max-width: 360px;
             height: fit-content;
         }
+
+        & .form-content{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            flex-direction: column;
+        }
     }
     & form{
         display: flex;
@@ -96,7 +103,7 @@ const TemplateLogin = () => {
                             <img className="logotipo" src={tipografia} alt="Logotipo do FinanBoard" />
                         </Link>
                         <Title >
-                            <h1 style={{ color: "var(--primary)" }}>{path === "/login" ? "Sign In" : "Register"}</h1>
+                            <h1 style={{ color: "var(--primary)", margin: "1.5rem 0rem" }}>{path === "/login" ? "Sign In" : "Register"}</h1>
                             <p className="text">
                                 {path === "/login"
                                     ? (<>Don’t have an account yet? <Link className="link" to={"register"}>Register.</Link></>)
@@ -105,7 +112,9 @@ const TemplateLogin = () => {
                             </p>
                         </Title>
                     </header>
-                    <Outlet />
+                    <section className="form-content">
+                        <Outlet />
+                    </section>
                 </section>
             </main>
         </AppTemplate>
