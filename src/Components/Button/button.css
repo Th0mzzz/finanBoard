@@ -1,4 +1,4 @@
-.btn {
+.button {
     padding: 1rem 2rem;
     border-radius: 8px;
     outline: none;
@@ -12,6 +12,25 @@
         color: #fff;
 
         &:hover {
+            background: var(--primary-hover);
+        }
+    }
+
+    &.menu-btn {
+        display: inline-block;
+        padding: 0;
+        border-radius: 10px;
+        color: var(--primary);
+        transition: color .3s, background .3s;
+        padding: 1rem;
+        width: fit-content;
+        & svg {
+            width: 25px;
+            height: 25px;
+        }
+
+        &:hover {
+            color: var(--container);
             background: var(--primary-hover);
         }
     }

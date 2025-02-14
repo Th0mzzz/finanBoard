@@ -56,8 +56,7 @@ const Register = () => {
             />
 
             <Button
-                color={"primary"}
-                type={"submit"}
+                type={"primary"}
             >
                 Register
             </Button>

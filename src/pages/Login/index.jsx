@@ -38,8 +38,7 @@ const Login = () => {
             />
 
             <Button
-                color={"primary"}
-                type={"submit"}
+                type={"primary"}
             >
                 Sign in
             </Button>

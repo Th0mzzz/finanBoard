@@ -1,0 +1,14 @@
+# Funcionalidades 
+
+## Dashboard
+    - Total gastos do mês (Quanto saiu);
+    - Total ganho (Quanto entrou);
+    - Total Economia (Quanto guardou);
+    - Restante do mês (Quanto sobrou);
+    - Gráfico de gastos nas categorias no mês;  
+    - Comparação de gastos dos meses passados;
+    - Comparação de ganhos dos meses passados;
+    - Cadastrar Gasto
+    - Cadastrar Ganho
+    - Cadastrar Categorias
+    - Meta de gastos por mês (maximo de gasto no mês)

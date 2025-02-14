@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom"
 import styled from "styled-components"
+import Aside from "../Components/dashboard/Aside"
 const AppTemplate = styled.section`
     & .app-container{
         padding: 0 3rem;
@@ -12,15 +13,20 @@ const AppTemplate = styled.section`
 const TemplateDashboard = () => {
     return (
         <AppTemplate>
-            <header>
+            <Aside />
+            <div className="dashboard-content">
 
-            </header>
-            <main className="app-container">
-                <Outlet />
-            </main>
-            <footer>
+                <header>
 
-            </footer>
+                </header>
+                <main className="app-container">
+                    <Outlet />
+                </main>
+                <footer>
+
+                </footer>
+            </div>
+
         </AppTemplate>
     )
 }
