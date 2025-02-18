@@ -1,7 +1,7 @@
 const Input = (props) => {
     if (props.type !== "textarea" && props.type !== "select") {
         return (
-            <div className="form-floating mb-3">
+            <div className={`form-floating ${props.icon ? "input-icon" : ""}`}>
                 <input
                     type={props.type}
                     name={props.name}
@@ -11,6 +11,9 @@ const Input = (props) => {
                     value={props.value}
                     onChange={props.handleChange}
                 />
+                <div className="icon">
+                    {props.icon ? props.icon : null}
+                </div>
                 <label htmlFor={props.inputId}>{props.label}</label>
             </div>
         )

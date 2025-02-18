@@ -21,9 +21,10 @@
         padding: 0;
         border-radius: 10px;
         color: var(--primary);
-        transition: color .3s, background .3s;
+        transition: all .4s;
         padding: 1rem;
         width: fit-content;
+
         & svg {
             width: 25px;
             height: 25px;
@@ -32,6 +33,33 @@
         &:hover {
             color: var(--container);
             background: var(--primary-hover);
+        }
+    }
+
+    &.btn-icon {
+        padding: .4rem;
+        color: var(--primary);
+        transition: all .2  s;
+
+        &:hover {
+            color: var(--primary-hover);
+        }
+
+        & svg {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    &.scrollBtn{
+        position: fixed;
+        z-index: 100;
+        right: 5%;
+        bottom: -200%;
+        padding: 1rem 1.3rem;
+        transition: all .4s;
+        &.show{
+            bottom: 5%;
         }
     }
 }
