@@ -18,7 +18,7 @@ const AppTemplate = styled.section`
         transition: all .4s ease-in-out;
     }
     & .app-container{
-        padding: 0 3rem;
+        padding: 5rem 0;
     } 
 
     @media (max-width: 768px) {

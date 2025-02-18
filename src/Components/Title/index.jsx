@@ -13,6 +13,7 @@ const TitleCSS = styled.div`
     }
     & h3{
         font-size: clamp(22px, 5vw, 28px);
+        font-weight: bold;
         font-family: var(--ff-text) ;
         line-height: normal;
     }
