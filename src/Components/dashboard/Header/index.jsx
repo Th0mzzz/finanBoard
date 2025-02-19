@@ -12,7 +12,7 @@ import defaultUser from "../../../assets/testUser.jpg"
 import Breadcrumb from "../BreadCrumb";
 const HeaderStyled = styled.header`
 position: relative;
-z-index: 10;
+z-index: 100;
     & h1{
         color: var(--primary);
         margin-bottom: 0;
@@ -46,13 +46,16 @@ const MenuNotifi = styled.div`
         position: absolute;
         width: fit-content;
         max-width: 360px;
-        right: 0;
+        right: 5px;
+        margin-top: 1rem;
         overflow: hidden;
         background-color: var(--container);
         border-radius: 20px;
         border: 0px solid var(--primary);
         transition: background .4s, height .4s , border .4s, padding .4s;
         height: 0;
+        z-index: 110;
+
         &.show{
             border-width: 1px;
             height: 400px;
@@ -77,7 +80,7 @@ const MenuNotifi = styled.div`
     }
 `
 
-export default function DashHeader({ title}) {
+export default function DashHeader({ title }) {
     const { theme, toggleTheme } = useThemeContext()
     const [menuNoti, setMenuNoti] = useState(false);
     const menuRef = useRef(null);

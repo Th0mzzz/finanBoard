@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import {  Route, Routes, useLocation } from 'react-router-dom'
 import TemplateDashboard from './Templates/templateDashboard'
 import TemplateLogin from './Templates/templateLogin'
 import Login from './pages/Login'
@@ -7,12 +7,12 @@ import Home from './pages/Dashboard/index.jsx'
 import ThemeProvider from './contexts/theme.jsx'
 
 function App() {
-
+  const location = useLocation();
+  const userLanguage = navigator.language || navigator.userLanguage;
   return (
     <>
       <ThemeProvider>
-        <BrowserRouter>
-          <Routes>
+          <Routes key={`${location.pathname}-${userLanguage}`}F>
             {/* LOGIN */}
             <Route path='login' element={<TemplateLogin />}>
               <Route index element={<Login />} />
@@ -29,7 +29,6 @@ function App() {
               <Route path='profile' element={<Home />} />
             </Route>
           </Routes>
-        </BrowserRouter>
       </ThemeProvider>
 
     </>

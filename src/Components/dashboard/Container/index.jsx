@@ -3,7 +3,7 @@ import Title from "../../Title";
 
 const ContainerStyled = styled.section`
     background: var(--container);
-    padding: 1.2rem;
+    padding: 2rem 3rem;
     border-radius: 20px;
 `
 
@@ -25,14 +25,7 @@ const TitleContainer = styled.section`
             text-align: center; 
         }
     }
-    & .content{
-        position: relative;
-        top: -2.4rem;
-        z-index: 20;
-        padding: 1rem;
-        display: flex;
-        flex-flow: row wrap;
-    }
+    
 `
 
 const Container = ({ children, type = null, title = null }) => {
@@ -45,9 +38,8 @@ const Container = ({ children, type = null, title = null }) => {
                         <h3>{title}</h3>
                     </Title>
                 </div>
-                <div className="content">
-                    {children}
-                </div>
+
+                {children}
             </TitleContainer>
         )
     }

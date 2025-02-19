@@ -12,6 +12,8 @@
     left: 0;
     top: 0;
     z-index: 1000;
+    max-height: 100vh;
+    overflow: auto;
 }
 
 .asideContainer .asideTop {
@@ -80,15 +82,17 @@
 @media (max-width: 768px) {
     .closed {
         & .asideContainer {
-            padding-top: 5rem;
+            padding-top: 7rem;
             background: none;
             width:40px;
+            overflow-y: hidden;
+            overflow: visible;
             .asideTop{
                 .menu-btn{
-
                     background: var(--primary);
                     border-radius:  15px 50% 50% 15px ;
                     color: var(--container);
+                    box-shadow: 0 0 8px var(--primary-hover);
                 }
                 a{
                     visibility: hidden;

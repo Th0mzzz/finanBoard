@@ -10,6 +10,7 @@ import { BiBullseye, BiBarChartSquare } from "react-icons/bi";
 import { useThemeContext } from "../contexts/theme";
 import { useEffect, useState } from "react";
 import Button from "../Components/Button";
+import { Spinner } from "react-bootstrap";
 
 const AppTemplate = styled.section`
     .dashboard-content{
@@ -18,7 +19,18 @@ const AppTemplate = styled.section`
         transition: all .4s ease-in-out;
     }
     & .app-container{
+        position: relative;
         padding: 5rem 0;
+        min-height: 80vh;
+        & .dashboard-loading{
+            color: var(--primary);
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+        }
     } 
 
     @media (max-width: 768px) {
@@ -46,7 +58,7 @@ const TemplateDashboard = () => {
         { name: "Dashboard", href: "/dashboard", icon: <BsSpeedometer2 /> },
         { name: "Expenses", href: "/dashboard/expenses", icon: <TbShoppingBagMinus /> },
         { name: "Income", href: "/dashboard/incomes", icon: <BsCurrencyDollar /> },
-        { name: "Insigths", href: "/dashboard/insigths", icon: <BiBarChartSquare /> },
+        { name: "Charts", href: "/dashboard/insigths", icon: <BiBarChartSquare /> },
         { name: "Savings", href: "/dashboard/savings", icon: <BsPiggyBank /> },
         { name: "Goals", href: "/dashboard/goals", icon: <BiBullseye /> },
     ];
@@ -77,6 +89,19 @@ const TemplateDashboard = () => {
         }
     }, [pathname]);
 
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 500);
+        window.onload = () => clearTimeout(timer);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+
+
     return (
         <AppTemplate>
             <Button
@@ -90,7 +115,12 @@ const TemplateDashboard = () => {
             <div className="dashboard-content">
                 <DashHeader title={title} activeMap={activeMap} />
                 <main className="app-container">
-                    <Outlet />
+                    {loading ? (
+                        <Spinner 
+                        className="dashboard-loading"
+                        animation="border" 
+                        />
+                    ) : (<Outlet />)}
                 </main>
             </div>
         </AppTemplate>
