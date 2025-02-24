@@ -4,6 +4,7 @@ import Aside from "../Components/dashboard/Aside"
 import DashHeader from "../Components/dashboard/Header"
 // links dashboard
 import { BsSpeedometer2, BsCurrencyDollar, BsPiggyBank } from "react-icons/bs";
+import { PiCopyrightBold } from "react-icons/pi";
 import { TbShoppingBagMinus } from "react-icons/tb";
 import { IoArrowUpOutline } from "react-icons/io5";
 import { BiBullseye, BiBarChartSquare } from "react-icons/bi";
@@ -11,6 +12,9 @@ import { useThemeContext } from "../contexts/theme";
 import { useEffect, useState } from "react";
 import Button from "../Components/Button";
 import { Spinner } from "react-bootstrap";
+import logo from "../assets/logos/FinanBoard/logo.png"
+import logoLight from "../assets/logos/autor/th0mzzz-logo.png"
+import logoDark from "../assets/logos/autor/th0mzzz-logo-dark.png"
 
 const AppTemplate = styled.section`
     .dashboard-content{
@@ -22,14 +26,24 @@ const AppTemplate = styled.section`
         position: relative;
         padding: 5rem 0;
         min-height: 80vh;
-        & .dashboard-loading{
-            color: var(--primary);
-            width: 60px;
-            height: 60px;
+
+        & .loading {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            translate: -50% -50%;
+                top: 50%;
+                left: 50%;
+                translate: -50% -50%;
+                & img{
+                    width: 100px;
+                }
+            & .dashboard-loading{
+                color: var(--primary);
+                width: 90px;
+                height: 90px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                translate: -50% -50%;
+            }
         }
     } 
 
@@ -39,7 +53,21 @@ const AppTemplate = styled.section`
         }
     }
     `
+
+const Footer = styled.footer`
+display: flex;
+flex-flow: row wrap;
+align-items: center ;
+justify-content: center;
+color: var(--primary);
+padding-top: 4rem;
+& img{
+    width: 180px;
+    margin-left: 10px;
+}
+    `
 const TemplateDashboard = () => {
+    const {theme} = useThemeContext()
     const location = useLocation()
     const pathname = location.pathname
     const [title, setTitle] = useState("Dashboard")
@@ -95,10 +123,9 @@ const TemplateDashboard = () => {
         const timer = setTimeout(() => {
             setLoading(false);
         }, 500);
-        window.onload = () => clearTimeout(timer);
 
         return () => clearTimeout(timer);
-    }, []);
+    }, [pathname]);
 
 
 
@@ -116,13 +143,23 @@ const TemplateDashboard = () => {
                 <DashHeader title={title} activeMap={activeMap} />
                 <main className="app-container">
                     {loading ? (
-                        <Spinner 
-                        className="dashboard-loading"
-                        animation="border" 
-                        />
+                        <div className="loading">
+                            <Spinner
+                                className="dashboard-loading"
+                                animation="border"
+                            />
+                            <img src={logo} alt="" />
+                        </div>
                     ) : (<Outlet />)}
                 </main>
+                <Footer>
+                    <span>
+                    <PiCopyrightBold /> All Right Reserved. Made By
+                    </span>
+                    <img src={theme === "dark" ? logoDark : logoLight} alt="" />
+                </Footer>
             </div>
+
         </AppTemplate>
     )
 }

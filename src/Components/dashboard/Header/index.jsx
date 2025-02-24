@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import Title from "../../Title";
-import { LuMoon, LuSunMedium, LuBell } from "react-icons/lu";[
-
-]
+import { LuMoon, LuSunMedium, LuBell } from "react-icons/lu";
+import Reminder from "../../Reminder/index.jsx"
 import Button from "../../Button";
 import { useThemeContext } from "../../../contexts/theme";
 import { useEffect, useRef, useState } from "react";
-import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import defaultUser from "../../../assets/testUser.jpg"
 import Breadcrumb from "../BreadCrumb";
@@ -60,22 +58,11 @@ const MenuNotifi = styled.div`
             border-width: 1px;
             height: 400px;
         }
-        & .alert{
-            min-width: 300px;
-            max-width: 100%;
-            margin-bottom: 0;
-            border-radius: 0    ;
-            & h3{
-                font-size: 20px;
-                font-weight: bold;
-            } 
-            & h3, & p{
-                margin-bottom: 0;
-            }
-        }
         & .d-flex{
             overflow-y: auto;
             height: 100%;
+            padding: .5rem 1rem;
+
         }
     }
 `
@@ -119,20 +106,10 @@ export default function DashHeader({ title }) {
                             <LuBell />
                         </Button>
                         <div className={`notifications ${menuNoti ? "show" : ""}`}>
-                            <div className="d-flex flex-column">
-
-                                <Alert variant="danger">
-                                    <h3>Notification</h3>
-                                    <p className="text">Notification</p>
-                                </Alert>
-                                <Alert variant="warning">
-                                    <h3>Notification</h3>
-                                    <p className="text">Notification</p>
-                                </Alert>
-                                <Alert variant="success">
-                                    <h3>Notification</h3>
-                                    <p className="text">Notification</p>
-                                </Alert>
+                            <div className="d-flex flex-column gap-1">
+                                <Reminder type="success" text="Notification" title="Notify Title" />
+                                <Reminder type="danger" text="Notification" title="Notify Title" />
+                                <Reminder type="warning" text="Notification" title="Notify Title" />
                             </div>
                         </div>
                     </MenuNotifi>

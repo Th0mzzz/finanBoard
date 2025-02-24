@@ -12,15 +12,18 @@ const StyledReminder = styled.div`
     font-family:var(--ff-title);
     border-radius:10px;
     max-width:320px;
-    margin:1.3rem 0;
     & svg{
         color: ${props => `var(--${props.$type})`};
         width:22px;
         height:22px;
     }
+    & h4{
+        font-size:18px;
+        font-weight: bold;
+    }
 `
 
-const Reminder = ({ type = "success", text }) => {
+const Reminder = ({ type = "success", text, title }) => {
     let icon = <MdCheckCircleOutline />
 
     if (type === "success") icon = <MdCheckCircleOutline />
@@ -28,8 +31,21 @@ const Reminder = ({ type = "success", text }) => {
     if (type === "warning") icon = <MdOutlineWarningAmber />
     return (
         <StyledReminder $type={type}>
-            {text}
+            {title ? (
+                <>
+                    <div className="me-3">
+                        <h4>{title ? title : null}</h4>
+                        {text}
+                    </div>
+
+                </>
+            ) : (
+                <>
+                    {text}
+                </>
+            )}
             {icon}
+
         </StyledReminder>
     )
 }

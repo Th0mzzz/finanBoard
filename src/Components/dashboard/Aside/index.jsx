@@ -7,18 +7,21 @@ import { useEffect, useState } from "react";
 import './aside.css'
 
 export default function Aside({ links, activeMap }) {
-    const [ativo, setAtivo] = useState(true);
+    const [ativo, setAtivo] = useState(() => {
+        return JSON.parse(localStorage.getItem("menuAtivo")) ?? true;
+    });
     function linkFecharMenu() {
         if (window.innerWidth < 768) {
             setAtivo(false)
         }
     }
     useEffect(() => {
-        if (ativo) {
-            document.documentElement.classList.remove("closed");
-        } else if (!ativo) {
-            document.documentElement.classList.add("closed");
-        }
+        localStorage.setItem("menuAtivo", JSON.stringify(ativo));
+    if (ativo) {
+        document.documentElement.classList.remove("closed");
+    } else {
+        document.documentElement.classList.add("closed");
+    }
     }, [ativo]);
 
     return (
@@ -47,7 +50,7 @@ export default function Aside({ links, activeMap }) {
                     })}
                     <li>
                         <Link to={"/sair"} className={`link`}>
-                            <span><BiLogOut/></span>
+                            <span><BiLogOut /></span>
                             <span className={`span-li`}>Sign Out</span>
                         </Link>
                     </li>
