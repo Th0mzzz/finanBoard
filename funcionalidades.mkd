@@ -12,3 +12,7 @@
     - Cadastrar Ganho
     - Cadastrar Categorias
     - Meta de gastos por mês (maximo de gasto no mês)
+## Income
+    - Registro de Ganhos - feito
+    - Gráfico de Ganho Mensal por categoria - feito
+    - Calculadora de Benefícios(VR, VT) 

@@ -216,7 +216,7 @@ const Home = () => {
                                     <tr>
                                         <th>Type</th>
                                         <th>Value</th>
-                                        <th>Describe</th>
+                                        <th>Description</th>
                                         <th>Date</th>
                                         <th>Hour</th>
                                     </tr>
@@ -269,9 +269,30 @@ const Home = () => {
                                 2023
                             </button>
                         </div>
-                        <div className="sections-charts w-100" style={{maxWidth:"992px"}}>
-                            <div className="chart w-100 p-2" style={{minHeight:"300px", background:"#fff", borderRadius:"20px"}} >
-                                <MonthlyChart />
+                        <div className="sections-charts w-100" style={{ maxWidth: "992px" }}>
+                            <div className="chart w-100 p-2" style={{ minHeight: "300px", background: "#fff", borderRadius: "20px" }} >
+                                <MonthlyChart data={{
+                                    labels: [
+                                        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                                    ],
+                                    datasets: [
+                                        {
+                                            label: "Expenses",
+                                            data: [500, 700, 450, 600, 800, 400, 900, 650, 500, 720, 780, 1650],
+                                            backgroundColor: "#E52020",
+                                            borderColor: "rgba(255, 99, 132, 1)",
+                                            borderWidth: 1,
+                                        },
+                                        {
+                                            label: "Incomes",
+                                            data: [1000, 1200, 950, 1300, 1400, 1100, 1500, 1250, 1350, 1480, 1550, 1400],
+                                            backgroundColor: "#5CB338",
+                                            borderColor: "rgba(75, 192, 192, 1)",
+                                            borderWidth: 1,
+                                        },
+                                    ],
+                                }} />
                             </div>
                         </div>
                     </OtherMonths>
