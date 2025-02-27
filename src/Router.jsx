@@ -1,4 +1,4 @@
-import {  Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import TemplateDashboard from './Templates/templateDashboard'
 import TemplateLogin from './Templates/templateLogin'
 import Login from './pages/Login'
@@ -14,24 +14,24 @@ function App() {
   return (
     <>
       <ThemeProvider>
-          <Routes key={`${location.pathname}-${userLanguage}`}F>
-            {/* LOGIN */}
-            <Route path='login' element={<TemplateLogin />}>
-              <Route index element={<Login />} />
-              <Route path='register' element={<Register />} />
-            </Route>
-            {/* Dashboard */}
-            <Route path='/dashboard' element={<TemplateDashboard />}>
-              <Route index element={<Home />} />
-              <Route path='expenses' element={<Home />} />
-              <Route path='incomes' element={<IncomePage />} />
-              <Route path='goals' element={<Home />} />
-              <Route path='insigths' element={<Home />} />
-              <Route path='savings' element={<Home />} />
-              <Route path='profile' element={<Home />} />
-              <Route path='*' element={<Error404 />} />
-            </Route>
-          </Routes>
+        <Routes key={`${location.pathname}-${userLanguage}`} F>
+          {/* LOGIN */}
+          <Route path='login' element={<TemplateLogin />}>
+            <Route index element={<Login />} />
+            <Route path='register' element={<Register />} />
+          </Route>
+          {/* Dashboard */}
+          <Route path='/dashboard' element={<TemplateDashboard />}>
+            <Route index element={<Home />} />
+            <Route path='expenses' element={<Home />} />
+            <Route path='incomes' element={<IncomePage />} />
+            <Route path='goals' element={<Home />} />
+            <Route path='insigths' element={<Home />} />
+            <Route path='savings' element={<Home />} />
+            <Route path='profile' element={<Home />} />
+          </Route>
+          <Route path='*' element={<Error404 />} />
+        </Routes>
       </ThemeProvider>
 
     </>

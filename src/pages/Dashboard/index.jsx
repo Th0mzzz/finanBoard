@@ -9,6 +9,7 @@ import Button from "../../Components/Button";
 import DonutChart from "../../Components/Charts/Charts";
 import { useThemeContext } from "../../contexts/theme";
 import MonthlyChart from "../../Components/Charts/MonthlyChart";
+import Table from "../../Components/Table";
 const DatasRow = styled.div`
         position: relative;
         top: -2.4rem;
@@ -47,35 +48,7 @@ flex-direction: column;
         border-radius: var(--bs-progress-border-radius);
     }
     `
-const ActivityTable = styled.div`
-    width: 100%;
-    overflow: auto;
-    max-height: 400px;
-    margin-top: 3rem;
-    & table{
-        min-width: 100%;
-        color: var(--text);
-        border-spacing: 0 10px;
-        & thead{
-            color: var(--primary);
-        }
-        & th, & td{
-            padding: 1rem;
-            border-bottom: 10px solid transparent;
-        }
-        & tbody > tr{
-            border-left: 2px solid var(--secondary);
-            cursor: pointer;
-            transition: all .2s;
-            margin-bottom: 1rem;
-            &:hover{
-                color: var(--primary);
-                border-color: var(--primary);
-                background: var(--background);
-            }
-        }
-    }
-`
+
 
 const OtherMonths = styled.div`
     margin-top: 3rem;
@@ -116,7 +89,7 @@ const Home = () => {
     const percentExpenseOfGoal = (expense / goal) * 100
     const datas = [
         { title: "Income", data: "R$2000" },
-        { title: "Expense", data: "R$900" },
+        { title: "Expense", data: `R$${expense}` },
         { title: "Saving", data: "R$400" },
         { title: "Balance", data: "R$700" }
     ]
@@ -185,7 +158,7 @@ const Home = () => {
                         <>
                             Expenses by Category
                             <Title>
-                                <h3>R$900</h3>
+                                <h3>R${expense}</h3>
                             </Title>
                         </>
                     }>
@@ -210,45 +183,47 @@ const Home = () => {
                             <h3 style={{ color: "var(--primary)" }}>Recent Activity</h3>
                         </Title>
 
-                        <ActivityTable>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Value</th>
-                                        <th>Description</th>
-                                        <th>Date</th>
-                                        <th>Hour</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Saving</td>
-                                        <td>R$50,00</td>
-                                        <td>New SmartPhone</td>
-                                        <td>01/01/2025</td>
-                                        <td>19:01</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Expense</td>
-                                        <td>-R$226,00</td>
-                                        <td>Benfica BusPass</td>
-                                        <td>01/01/2025</td>
-                                        <td>15:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Income</td>
-                                        <td>+R$1900,00</td>
-                                        <td>Salary</td>
-                                        <td>01/01/2025</td>
-                                        <td>12:00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <Link to={"actions"} >
-                                <Button type={"primary"}>See more</Button>
-                            </Link>
-                        </ActivityTable>
+                        <Table
+                            head={["Type", "Value", "Description", "Date", "Hour"]}
+                            data={[
+                                {
+                                    itens: [
+                                        "Saving",
+                                        <span key={null} style={{color:"var(--warning)"}}>R$300,00</span>,
+                                        "New Smartphone",
+                                        "04/03/2025",
+                                        "19:01"
+                                    ],
+                                },
+                                {
+                                    itens: [
+                                        "Expense",
+                                        <span key={null} style={{color:"var(--danger)"}}>-R$226,00</span>,
+                                        "Benfica BusPass",
+                                        "04/03/2025",
+                                        "17:41"
+                                    ],
+                                },
+                                {
+                                    itens: [
+                                        "Income",
+                                        <span key={null} style={{color:"var(--success)"}}>R$226,00</span>,
+                                        "Brownie Sales",
+                                        "03/03/2025",
+                                        "10:54",
+                                    ],
+                                },
+                                {
+                                    itens: [
+                                        "Income",
+                                        <span key={null} style={{color:"var(--success)"}}>R$3.800,00</span>,
+                                        "Salary",
+                                        "01/03/2025",
+                                        "08:00"
+                                    ],
+                                },
+                            ]}
+                        />
                     </Container>
                 </div>
             </div>
