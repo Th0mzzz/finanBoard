@@ -1,9 +1,8 @@
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
-const MonthlyChart = ({data}) => {
-  
+const MonthlyChart = ({ data }) => {
 
   const options = {
     responsive: true,
@@ -14,8 +13,8 @@ const MonthlyChart = ({data}) => {
       tooltip: {
         callbacks: {
           label: function (tooltipItem) {
-            let value = tooltipItem.raw; // Valor do dado
-            return `R$ ${value.toFixed(2)}`; // Formata com "R$" e duas casas decimais
+            let value = tooltipItem.raw; 
+            return `R$ ${value.toFixed(2)}`;
           },
         },
       },
@@ -25,14 +24,14 @@ const MonthlyChart = ({data}) => {
         beginAtZero: true,
         ticks: {
           callback: function (value) {
-            return `R$ ${value}`; // Adiciona "R$" no eixo Y
+            return `R$ ${value}`;
           },
         },
       },
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return <Line data={data} options={options} />;
 };
 
 export default MonthlyChart;

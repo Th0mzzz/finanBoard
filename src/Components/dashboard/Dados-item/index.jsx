@@ -5,7 +5,8 @@ const Item = styled.div`
     background: var(--background);
     border-radius: 10px;
     width: 100%;
-    max-width: 180px;
+    min-width: fit-content;
+    max-width: clamp(150px,45%,220px);
     color: var(--primary);
     & p{
         color: var(--secondary);

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import styled from "styled-components";
 import Container from "../../Components/dashboard/Container";
 import DadosItem from "../../Components/dashboard/Dados-item";
@@ -10,6 +11,8 @@ import DonutChart from "../../Components/Charts/Charts";
 import { useThemeContext } from "../../contexts/theme";
 import MonthlyChart from "../../Components/Charts/MonthlyChart";
 import Table from "../../Components/Table";
+import activityData from '../../assets/json/activity.json'; // Importa o JSON
+
 const DatasRow = styled.div`
         position: relative;
         top: -2.4rem;
@@ -49,7 +52,6 @@ flex-direction: column;
     }
     `
 
-
 const OtherMonths = styled.div`
     margin-top: 3rem;
     display: flex;
@@ -82,25 +84,23 @@ const OtherMonths = styled.div`
         }
     }
 `
+
 const Home = () => {
-    const { theme } = useThemeContext()
-    const expense = 900
-    const goal = 1800
-    const percentExpenseOfGoal = (expense / goal) * 100
-    const datas = [
-        { title: "Income", data: "R$2000" },
-        { title: "Expense", data: `R$${expense}` },
-        { title: "Saving", data: "R$400" },
-        { title: "Balance", data: "R$700" }
-    ]
+    const { theme } = useThemeContext();
+    const [endPoint, setEndPoint] = useState([]);
+    const expense = 900;
+    const goal = 1800;
+    const percentExpenseOfGoal = (expense / goal) * 100;
+    const [datas, setDatas] = useState([]);
+
     const donutChartData = [
         ["Expenses", "% By total"],
-        ["Shopping", 1.22],
-        ["Clothing", 1.77],
-        ["Housing", 2.06],
-        ["Food", 2.11],
-        ["Transportation", 2.51],
-        ["Others", 0.33],
+        ["Shopping", 150],
+        ["Clothing", 250],
+        ["Housing", 200],
+        ["Food", 100],
+        ["Transportation", 150],
+        ["Others", 50],
     ];
     const donutChartOptions = {
         title: null,
@@ -117,6 +117,35 @@ const Home = () => {
         backgroundColor: "transparent",
     };
 
+    useEffect(() => {
+        
+        const formattedData = activityData.map((item, index) => ({
+            ...item,
+            value: <span key={index} style={{ color: item.color }}>{item.value}</span>
+        }));
+        setEndPoint(formattedData);
+
+        const income = activityData
+            .filter(item => item.type === 1)
+            .reduce((acc, item) => acc + parseFloat(item.value.replace('R$', '').replace(',', '.')), 0);
+
+        const expense = activityData
+            .filter(item => item.type === 2)
+            .reduce((acc, item) => acc + parseFloat(item.value.replace('R$', '').replace(',', '.')), 0);
+
+        const saving = activityData
+            .filter(item => item.type === 3)
+            .reduce((acc, item) => acc + parseFloat(item.value.replace('R$', '').replace(',', '.')), 0);
+
+        const balance = income - (expense + saving);
+
+        setDatas([
+            { title: "Income", data: `R$${income.toFixed(2)}` },
+            { title: "Expense", data: `R$${expense.toFixed(2)}` },
+            { title: "Saving", data: `R$${saving.toFixed(2)}` },
+            { title: "Balance", data: `R$${balance.toFixed(2)}` }
+        ]);
+    }, []);
 
     return (
         <>
@@ -143,7 +172,6 @@ const Home = () => {
                                 ? (<Reminder type="danger" text={"Your spending is out of the planned."} />)
                                 : (<Reminder type="success" text={"Your spending is under control."} />)
                             }
-
 
                             <Link to={"goals"} className="mt-3">
                                 <Button type={"primary"}>Manage your spending</Button>
@@ -183,50 +211,37 @@ const Home = () => {
                             <h3 style={{ color: "var(--primary)" }}>Recent Activity</h3>
                         </Title>
 
-                        <Table
-                            head={["Type", "Value", "Description", "Date", "Hour"]}
-                            data={[
-                                {
-                                    itens: [
-                                        "Saving",
-                                        <span key={null} style={{color:"var(--warning)"}}>R$300,00</span>,
-                                        "New Smartphone",
-                                        "04/03/2025",
-                                        "19:01"
-                                    ],
-                                },
-                                {
-                                    itens: [
-                                        "Expense",
-                                        <span key={null} style={{color:"var(--danger)"}}>-R$226,00</span>,
-                                        "Benfica BusPass",
-                                        "04/03/2025",
-                                        "17:41"
-                                    ],
-                                },
-                                {
-                                    itens: [
-                                        "Income",
-                                        <span key={null} style={{color:"var(--success)"}}>R$226,00</span>,
-                                        "Brownie Sales",
-                                        "03/03/2025",
-                                        "10:54",
-                                    ],
-                                },
-                                {
-                                    itens: [
-                                        "Income",
-                                        <span key={null} style={{color:"var(--success)"}}>R$3.800,00</span>,
-                                        "Salary",
-                                        "01/03/2025",
-                                        "08:00"
-                                    ],
-                                },
-                            ]}
-                        />
+                        <Table head={["Type", "Value", "Description", "Date", "Hour"]}>
+                            {
+                                endPoint.map((data, i) => {
+
+                                    let tipo = "";
+                                    switch (data.type) {
+                                        case 1:
+                                            tipo = "Income";
+                                            break;
+                                        case 2:
+                                            tipo = "Expense";
+                                            break;
+                                        case 3:
+                                            tipo = "Saving";
+                                            break;
+                                        default:
+                                            break;
+                                    }
+
+                                    return <tr key={i} >
+                                        <td>{tipo}</td>
+                                        <td>{data.value}</td>
+                                        <td>{data.description}</td>
+                                        <td>{data.date}</td>
+                                        <td>{data.hour}</td>
+                                    </tr>
+                                })}
+                        </Table>
                     </Container>
                 </div>
-            </div>
+            </div >
             <div className="row row-gap-4 mb-4">
                 <Container>
                     <Title>
@@ -244,7 +259,7 @@ const Home = () => {
                                 2023
                             </button>
                         </div>
-                        <div className="sections-charts w-100" style={{ maxWidth: "992px" }}>
+                        <div className="sections-charts w-100">
                             <div className="chart w-100 p-2" style={{ minHeight: "300px", background: "#fff", borderRadius: "20px" }} >
                                 <MonthlyChart data={{
                                     labels: [

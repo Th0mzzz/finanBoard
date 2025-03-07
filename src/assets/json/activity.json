@@ -1,0 +1,50 @@
+[
+    {
+        "type": 3,
+        "value": "R$300,00",
+        "color": "var(--warning)",
+        "description": "New Smartphone",
+        "date": "04/03/2025",
+        "hour": "19:01"
+    },
+    {
+        "type": 1,
+        "value": "R$1700,00",
+        "color": "var(--success)",
+        "description": "Salary",
+        "date": "01/03/2025",
+        "hour": "12:00"
+    },
+    {
+        "type": 2,
+        "value": "R$132,00",
+        "color": "var(--danger)",
+        "description": "BenficaBusPass",
+        "date": "09/03/2025",
+        "hour": "17:30"
+    },
+    {
+        "type": 1,
+        "value": "R$400,00",
+        "color": "var(--success)",
+        "description": "Brownie Sales",
+        "date": "04/03/2025",
+        "hour": "19:01"
+    },
+    {
+        "type": 2,
+        "value": "R$50,00",
+        "color": "var(--danger)",
+        "description": "Groceries",
+        "date": "05/03/2025",
+        "hour": "10:00"
+    },
+    {
+        "type": 3,
+        "value": "R$200,00",
+        "color": "var(--warning)",
+        "description": "Savings Deposit",
+        "date": "06/03/2025",
+        "hour": "15:30"
+    }
+]
